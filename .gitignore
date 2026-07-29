@@ -216,4 +216,13 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
-*openspec*
+
+# Generated knowledge-base indexes
+.kb/
+*/.kb/
+wiki/
+
+# Local planning and agent workflow artifacts
+openspec/
+.codex/skills/openspec-*/
+.hermes/

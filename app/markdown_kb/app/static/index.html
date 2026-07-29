@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Knowledge Base Q&A</title>
+    <link rel="stylesheet" href="/static/styles.css?v=compare-1" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <p class="eyebrow">Markdown KB</p>
+        <h1>Knowledge Base Q&A</h1>
+        <p class="subtitle">Ask questions against the indexed Markdown docs. Answers stay grounded and include source sections.</p>
+      </section>
+
+      <section class="panel status-panel" aria-live="polite">
+        <div>
+          <p class="label">Server</p>
+          <p id="health-status" class="status-text">Checking…</p>
+        </div>
+        <form id="index-form">
+          <label for="index-key-input">Index API key</label>
+          <input
+            id="index-key-input"
+            name="index-key"
+            type="password"
+            autocomplete="off"
+            placeholder="Required to build the index"
+            required
+          />
+          <small>Sent only with this index request; never saved by this page.</small>
+          <button id="index-button" class="secondary-button" type="submit">Build / Rebuild index</button>
+        </form>
+      </section>
+
+      <section class="panel chat-panel">
+        <form id="question-form">
+          <label for="question-input">Question</label>
+          <textarea
+            id="question-input"
+            name="query"
+            rows="4"
+            placeholder="e.g. How long do refunds take?"
+            autocomplete="off"
+            required
+          ></textarea>
+          <div class="actions">
+            <button id="ask-button" type="submit">Ask + Compare</button>
+            <button id="compare-button" class="secondary-button" type="button">Compare retrieval only</button>
+            <button id="clear-button" class="ghost-button" type="button">Clear</button>
+          </div>
+        </form>
+
+        <div class="examples" aria-label="Example questions">
+          <button type="button" data-question="How long do refunds take?">Refund timeline</button>
+          <button type="button" data-question="Can I change my email address?">Change email</button>
+          <button type="button" data-question="How long does standard shipping take?">Shipping</button>
+          <button type="button" data-question="Which restaurants are nearby?">Out of scope</button>
+        </div>
+      </section>
+
+      <section id="result" class="panel result-panel hidden" aria-live="polite">
+        <div class="result-heading">
+          <p class="label">Answer</p>
+          <span id="result-state" class="pill">Ready</span>
+        </div>
+        <div id="answer" class="answer"></div>
+        <div id="sources" class="sources"></div>
+      </section>
+
+      <section id="comparison" class="panel comparison-panel hidden" aria-live="polite">
+        <div class="result-heading">
+          <div>
+            <p class="label">/compare endpoint</p>
+            <h2>Retrieval strategy comparison</h2>
+          </div>
+          <span id="comparison-state" class="pill">Ready</span>
+        </div>
+        <p class="comparison-note">
+          Uses <code>POST /compare</code> to show the same query ranked by Markdown KB keyword/BM25,
+          the pure-vector baseline, and the hybrid fused result.
+        </p>
+        <div id="comparison-grid" class="comparison-grid"></div>
+      </section>
+    </main>
+
+    <script src="/static/app.js?v=index-key-1" defer></script>
+  </body>
+</html>
