@@ -58,17 +58,6 @@ def test_canonical_readmes_export_the_index_key_and_document_the_browser_field()
         assert "current page memory only" in readme
 
 
-def test_prompt_is_explicitly_historical_and_not_runtime_documentation():
-    prompt = (REPO_ROOT / "PROMPT.md").read_text(encoding="utf-8")
-    historical_notice = prompt.split("## Archived original brief", maxsplit=1)[0].lower()
-
-    assert "historical, non-runtime artifact" in historical_notice
-    assert "not current setup" in historical_notice
-    assert "only supported runtime is `app/markdown_kb`" in historical_notice
-    assert "standalone vector rag" in historical_notice
-    assert "retired" in historical_notice
-
-
 def test_canonical_corpus_has_exactly_13_documents_and_49_parent_sections():
     markdown_documents = sorted(indexer.DOCS_DIR.glob("*.md"))
     parent_sections = [

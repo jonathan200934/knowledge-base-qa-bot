@@ -19,12 +19,7 @@ TEXT_SUFFIXES = {".css", ".html", ".js", ".json", ".md", ".py", ".txt"}
 
 
 def supported_runtime_files() -> list[Path]:
-    """Return canonical production, configuration, and documentation files.
-
-    OpenSpec source-of-truth and archived planning documents are deliberately
-    outside this allowlist. Historical PROMPT.md files are not supported
-    runtime documentation either.
-    """
+    """Return canonical production, configuration, and documentation files."""
 
     files = [
         REPO_ROOT / ".gitignore",
